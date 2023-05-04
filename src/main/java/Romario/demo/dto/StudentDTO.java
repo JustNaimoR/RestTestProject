@@ -20,6 +20,9 @@ public class StudentDTO {
     @Range(min = 1800, max = 2100, message = "Incorrect year!")
     private int yearOfAdmission;
 
+    @NotNull(message = "can't be null")
+    private boolean learning;
+
     @NotNull(message = "can't be empty!")
     private String faculty;
 
@@ -30,6 +33,7 @@ public class StudentDTO {
         surname = student.getSurname();
         age = student.getAge();
         yearOfAdmission = student.getYearOfAdmission();
+        learning = student.isLearning();
         faculty = student.getFaculty().getName();
     }
 
@@ -66,5 +70,12 @@ public class StudentDTO {
     }
     public void setFaculty(String facultyName) {
         this.faculty = facultyName;
+    }
+
+    public boolean isLearning() {
+        return learning;
+    }
+    public void setLearning(boolean learning) {
+        this.learning = learning;
     }
 }

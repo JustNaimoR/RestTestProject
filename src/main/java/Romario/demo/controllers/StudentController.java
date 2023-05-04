@@ -33,9 +33,19 @@ public class StudentController {
         this.studentValidator = studentValidator;
     }
 
-    @GetMapping
+    @GetMapping()
     public Set<StudentDTO> getStudents() {
         return studentService.getStudents().stream().map(StudentController::toDTO).collect(Collectors.toSet());
+    }
+
+    @GetMapping("/getLearnings")
+    public Set<StudentDTO> getLearningStudents() {
+        return studentService.getLearnings().stream().map(StudentController::toDTO).collect(Collectors.toSet());
+    }
+
+    @PostMapping("/changeData")
+    public void changeData(@RequestBody @Valid StudentDTO studentDTO, BindingResult bindingResult) {
+
     }
 
     @PostMapping("/add")
@@ -64,6 +74,7 @@ public class StudentController {
         student.setAge(studentDTO.getAge());
         student.setSurname(studentDTO.getSurname());
         student.setYearOfAdmission(studentDTO.getYearOfAdmission());
+        student.setLearning(studentDTO.isLearning());
 
         student.setFaculty(facultyService.getByName(studentDTO.getFaculty()).orElse(null));
 

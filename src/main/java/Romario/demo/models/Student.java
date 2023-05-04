@@ -3,6 +3,7 @@ package Romario.demo.models;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.Range;
 
 @Entity
@@ -29,6 +30,10 @@ public class Student {
     @Column(name = "year_of_admission")
     @Range(min = 1800, max = 2100, message = "Incorrect year!")
     private int yearOfAdmission;
+
+    @Column(name = "learning")
+    @NotNull(message = "can't be null")
+    private boolean learning;
 
     @ManyToOne
     @JoinColumn(name = "faculty_id", referencedColumnName = "id")
@@ -76,5 +81,12 @@ public class Student {
     }
     public void setFaculty(Faculty faculty) {
         this.faculty = faculty;
+    }
+
+    public boolean isLearning() {
+        return learning;
+    }
+    public void setLearning(boolean student) {
+        this.learning = student;
     }
 }

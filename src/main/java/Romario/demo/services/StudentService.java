@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 @Transactional(readOnly = true)
@@ -32,6 +33,10 @@ public class StudentService {
 
     public Optional<Student> getByNameAndSurnameAndAge(String name, String surname) {
         return studentRepository.findByNameAndSurname(name, surname);
+    }
+
+    public Set<Student> getLearnings() {
+        return getStudents().stream().filter(Student::isLearning).collect(Collectors.toSet());
     }
 
     public Set<Student> getByFaculty(Faculty faculty) {
