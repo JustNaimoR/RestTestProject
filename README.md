@@ -1,5 +1,5 @@
 # RestTestProject
-Заввисимости: ----------------------------------------------------------------
+Заввисимости:
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
