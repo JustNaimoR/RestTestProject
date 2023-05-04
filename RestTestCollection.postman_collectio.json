@@ -1,0 +1,283 @@
+{
+	"info": {
+		"_postman_id": "25bab2af-1ab9-4bb9-8320-28a059dfe83f",
+		"name": "RestTestCollection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "26457687",
+		"_collection_link": "https://orange-flare-301790.postman.co/workspace/Mine~ff6654ed-dc17-43ac-b792-f565af4c227c/collection/26457687-25bab2af-1ab9-4bb9-8320-28a059dfe83f?action=share&creator=26457687&source=collection_link"
+	},
+	"item": [
+		{
+			"name": "GetRequests",
+			"item": [
+				{
+					"name": "All faculties",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/faculty",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"faculty"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "All students",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/student",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"student"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "All universities",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/university",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"university"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "PostRequests",
+			"item": [
+				{
+					"name": "add University",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"MGU\",\r\n    \"city\": \"Moscow\",\r\n    \"hasAccreditation\": true,\r\n    \"foundationYear\": \"1755-01-12\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/university/add",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"university",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "add faculty",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"IBKS\",\r\n    \"foundationYear\": \"1999-06-14\",\r\n    \"budgetPlaces\": 35,\r\n    \"independent\": true,\r\n    \"university\": \"MGU\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/faculty/add",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"faculty",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "add student",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Fazma\",\r\n    \"surname\": \"Korg\",\r\n    \"age\": 23,\r\n    \"yearOfAdmission\": 2018,\r\n    \"faculty\": \"IBKS\",\r\n    \"learning\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/student/add",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"student",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Change student's data",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Fazma\",\r\n    \"surname\": \"Korg\",\r\n    \"age\": 19,\r\n    \"yearOfAdmission\": 2011,\r\n    \"learning\": false,\r\n    \"faculty\": \"IBKS\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/student/changeData",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"student",
+								"changeData"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "SpecificGets",
+			"item": [
+				{
+					"name": "All faculties in the university",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"MGU\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/university/faculties",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"university",
+								"faculties"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "All students in the faculty",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"IBKS\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/faculty/students",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"faculty",
+								"students"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get learnings",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/student/getLearnings",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"student",
+								"getLearnings"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
