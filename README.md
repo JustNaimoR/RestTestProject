@@ -1,6 +1,7 @@
 # RestTestProject
 Заввисимости: ----------------------------------------------------------------
-_
+
+</>
 <dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -29,4 +30,4 @@ _
 			<scope>test</scope>
 		</dependency>
 </dependencies>
-
+</>
