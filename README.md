@@ -1,8 +1,6 @@
 # RestTestProject
 Заввисимости: ----------------------------------------------------------------
 
-</>
-<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
@@ -29,5 +27,3 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-</dependencies>
-</>
