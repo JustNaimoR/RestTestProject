@@ -31,7 +31,14 @@ public class StudentService {
         studentRepository.save(student);
     }
 
-    public Optional<Student> getByNameAndSurnameAndAge(String name, String surname) {
+    @Transactional
+    public void update(int id, Student student) {
+        student.setId(id);
+
+        studentRepository.save(student);
+    }
+
+    public Optional<Student> getByNameAndSurname(String name, String surname) {
         return studentRepository.findByNameAndSurname(name, surname);
     }
 

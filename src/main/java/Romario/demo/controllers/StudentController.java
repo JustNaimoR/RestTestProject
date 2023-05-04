@@ -5,6 +5,8 @@ import Romario.demo.models.Student;
 import Romario.demo.services.FacultyService;
 import Romario.demo.services.StudentService;
 import Romario.demo.util.ErrorResponse;
+import Romario.demo.util.Exceptions.IncorrectStudentException;
+import Romario.demo.util.Exceptions.IncorrectUniversityException;
 import Romario.demo.util.Exceptions.ObjectNotSavedException;
 import Romario.demo.util.StudentValidator;
 import jakarta.validation.Valid;
@@ -12,10 +14,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -44,8 +44,20 @@ public class StudentController {
     }
 
     @PostMapping("/changeData")
-    public void changeData(@RequestBody @Valid StudentDTO studentDTO, BindingResult bindingResult) {
+    public ResponseEntity<HttpStatus> changeData(@RequestBody @Valid StudentDTO studentDTO, BindingResult bindingResult) {
 
+        if (bindingResult.hasErrors())
+            ErrorResponse.returnErrors(bindingResult);
+
+        Student student = studentService.getByNameAndSurname(studentDTO.getName(), studentDTO.getSurname()).orElse(null);
+
+        if (student == null) {
+            throw new IncorrectStudentException("There is no such a student!");
+        }
+
+        studentService.update(student.getId(), fromDTO(studentDTO));
+
+        return ResponseEntity.ok(HttpStatus.OK);
     }
 
     @PostMapping("/add")
@@ -83,6 +95,16 @@ public class StudentController {
 
     @ExceptionHandler
     private ResponseEntity<ErrorResponse> handleObjectNotSaved(ObjectNotSavedException e) {
+        ErrorResponse errorResponse = new ErrorResponse(
+                e.getMessage(),
+                System.currentTimeMillis()
+        );
+
+        return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler
+    private ResponseEntity<ErrorResponse> handleIncorrectStudent(IncorrectStudentException e) {
         ErrorResponse errorResponse = new ErrorResponse(
                 e.getMessage(),
                 System.currentTimeMillis()

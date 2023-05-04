@@ -28,7 +28,7 @@ public class StudentValidator implements Validator {
     public void validate(Object target, Errors errors) {
         Student student = (Student) target;
 
-        if (studentService.getByNameAndSurnameAndAge(student.getName(), student.getSurname()).isPresent()) {
+        if (studentService.getByNameAndSurname(student.getName(), student.getSurname()).isPresent()) {
             errors.rejectValue("name", "", "This student is already present!");
         }
         if (student.getFaculty() == null) {

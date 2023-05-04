@@ -17,7 +17,7 @@ public class StudentDTO {
     @Min(value = 18, message = "Too young!")
     private int age;
 
-    @Range(min = 1800, max = 2100, message = "Incorrect year!")
+    @Range(min = 2011, max = 2100, message = "Incorrect year!")
     private int yearOfAdmission;
 
     @NotNull(message = "can't be null")
